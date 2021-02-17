@@ -1,6 +1,6 @@
 package si.kurinnyi.formula1.dataformatter;
 
-import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,18 +9,12 @@ import si.kurinnyi.formula1.racer.Racer;
 
 public class RacerFormatter {
 
-	Racer racer;
-
-	public List<Racer> formatRacer(Map<String, String> abbreviationToName, 
-			Map<String, String> abbreviationToTeam, 
-			Map<String, Duration> abbreviationToLapTime) {
-
-		return abbreviationToName
+	public List<Racer> newformatRacer(Map<String, String> abbrToName, Map<String, String> abbrToTeam,
+									  Map<String, List<LocalTime>> abbrToLap) {
+		return abbrToName
 				.keySet()
 				.stream()
-				.map(element -> new Racer (abbreviationToName.get(element), 
-						abbreviationToTeam.get(element),
-						abbreviationToLapTime.get(element)))
+				.map(element -> new Racer(abbrToName.get(element), abbrToTeam.get(element), abbrToLap.get(element)))
 				.collect(Collectors.toList());
 	}
 }
