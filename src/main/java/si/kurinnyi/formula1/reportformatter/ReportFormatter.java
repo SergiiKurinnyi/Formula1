@@ -1,6 +1,7 @@
 package si.kurinnyi.formula1.reportformatter;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -23,16 +24,16 @@ public class ReportFormatter {
     private static final String SPACE_INDENT = " ";
     private static final String MINUS_SIGN_INDENT = "-";
 
+    public static AtomicInteger atomicCounter = new AtomicInteger(-1);
+
     public List<String> formatTable(List<Racer> racerList, TableType tableType) {
         List<String> result;
         final int nameLineLength = getMaxNameLineLength(racerList).get() + 4;
         final int teamLineLength = getMaxTeamLineLength(racerList).get() + 1;
 
-        AtomicInteger atomicCounter = new AtomicInteger(-1);
-
         result = racerList.stream()
                 .map(element -> formatLine(tableType, atomicCounter, element, nameLineLength, teamLineLength))
-                .collect(Collectors.toList());
+                .collect(toList());
 
         return result;
     }
@@ -51,8 +52,8 @@ public class ReportFormatter {
         }
 
         if (tableType == TableType.LAP_COUNT) {
-			return lineBuilder.append(
-			        formatLapCountTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
+            return lineBuilder.append(
+                    formatLapCountTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
 
         if (tableType == TableType.BEST_LAP) {
@@ -65,7 +66,7 @@ public class ReportFormatter {
                     formatAvgTimeTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
 
-        if(tableType == TableType.TOTAL_TIME) {
+        if (tableType == TableType.TOTAL_TIME) {
             return lineBuilder.append(
                     formatTotalTimeTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
@@ -85,6 +86,7 @@ public class ReportFormatter {
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append("\r\n");
         }
+
         return stringBuilder.append(format("%2s. %s", counter.getAndIncrement(), racer.getName())).toString();
 
     }
@@ -100,10 +102,11 @@ public class ReportFormatter {
             stringBuilder.append(format(COLUMNS_LINE_SEPARATOR_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1 +
                             teamLineLength + LINE_FORMAT_DELIMITER2, "No", tableType.getColumnList().get(0),
                     tableType.getColumnList().get(1), tableType.getColumnList().get(2)));
-            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength)  + "s", "")
+            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength) + "s", "")
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append("\r\n");
         }
+
         return stringBuilder.append(format(LINE_FORMAT_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1 +
                         teamLineLength + LINE_FORMAT_DELIMITER2, counter.getAndIncrement(), racer.getName(),
                 racer.getTeam(), racer.getLaps().size())).toString();
@@ -120,10 +123,11 @@ public class ReportFormatter {
             stringBuilder.append(format(COLUMNS_LINE_SEPARATOR_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1
                             + teamLineLength + LINE_FORMAT_DELIMITER2, "No", tableType.getColumnList().get(0),
                     tableType.getColumnList().get(1), tableType.getColumnList().get(2)));
-            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength)  + "s", "")
+            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength) + "s", "")
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append("\r\n");
         }
+
         return stringBuilder.append(format(LINE_FORMAT_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1
                         + teamLineLength + LINE_FORMAT_DELIMITER2, counter.getAndIncrement(), racer.getName(),
                 racer.getTeam(), formatTime(racer.getLaps().get(0)))).toString();
@@ -145,6 +149,7 @@ public class ReportFormatter {
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append("\r\n");
         }
+
         return stringBuilder.append(format(LINE_FORMAT_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1
                         + teamLineLength + LINE_FORMAT_DELIMITER2, counter.getAndIncrement(), racer.getName(),
                 racer.getTeam(), formatTime(racer.getLaps().get(0)))).toString();
@@ -159,9 +164,9 @@ public class ReportFormatter {
             stringBuilder.append(format(LINE_SEPARATOR_PREFIX + lineLength + "s", "")
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append(format(COLUMNS_LINE_SEPARATOR_PREFIX + (nameLineLength - 3) + LINE_FORMAT_DELIMITER1
-                                    + teamLineLength + LINE_FORMAT_DELIMITER2, "No", tableType.getColumnList().get(0),
-                            tableType.getColumnList().get(1), tableType.getColumnList().get(2)));
-            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength)  + "s", "")
+                            + teamLineLength + LINE_FORMAT_DELIMITER2, "No", tableType.getColumnList().get(0),
+                    tableType.getColumnList().get(1), tableType.getColumnList().get(2)));
+            stringBuilder.append(format(LINE_SEPARATOR_PREFIX + (lineLength) + "s", "")
                     .replace(SPACE_INDENT, MINUS_SIGN_INDENT));
             stringBuilder.append("\r\n");
         }
@@ -175,12 +180,14 @@ public class ReportFormatter {
     }
 
     private Optional<Integer> getMaxNameLineLength(List<Racer> racers) {
+
         return racers.stream()
                 .map(x -> x.getName().length())
                 .max(Integer::compareTo);
     }
 
     private Optional<Integer> getMaxTeamLineLength(List<Racer> racers) {
+
         return racers.stream()
                 .map(x -> x.getTeam().length())
                 .max(Integer::compareTo);
@@ -196,7 +203,8 @@ public class ReportFormatter {
     private String formatTime(LocalTime lapTime) {
         long toMinutes = lapTime.getMinute();
         long toSeconds = lapTime.getSecond();
-        long toMillis = lapTime.getNano()/1000000;
+        long toMillis = lapTime.getNano() / 1000000;
+
         return format(LAP_TIME_TO_STRING_FORMAT, toMinutes, toSeconds, toMillis);
     }
 

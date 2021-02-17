@@ -25,10 +25,6 @@ public class ColumnFactory implements Column {
         return null;
     }
 
-/*    Column getColumn(ColumnType type) {
-
-    return null;
-    }*/
 
     public List<Column> getColumn(List<Racer> racerList, TableType tableType) {
 
@@ -39,29 +35,26 @@ public class ColumnFactory implements Column {
             case LAP_COUNT:
                 getLapsCount(racerList);
                 break;
-
         }
 
-
-    return new ArrayList<Column>();
-
+        return new ArrayList<>();
     }
 
     private List<String> getNames(List<Racer> racerList) {
 
-         racerList.stream()
-                .map(x -> x.getName())
+        racerList.stream()
+                .map(Racer::getName)
                 .collect(Collectors.toList()).forEach(System.out::println);
         return null;
     }
 
-   private List<String> getLapsCount(List<Racer> racerList) {
+    private List<String> getLapsCount(List<Racer> racerList) {
 
-         racerList.stream()
-                 .filter(x -> x.getLaps() != null)
-                 .map(x -> x.getName() + " " + x.getTeam() + " " + x.getLaps().size() + " laps")
-                 .collect(Collectors.toList()).forEach(System.out::println);
-         return null;
+        racerList.stream()
+                .filter(x -> x.getLaps() != null)
+                .map(x -> x.getName() + " " + x.getTeam() + " " + x.getLaps().size() + " laps")
+                .collect(Collectors.toList()).forEach(System.out::println);
+        return null;
     }
 
 }

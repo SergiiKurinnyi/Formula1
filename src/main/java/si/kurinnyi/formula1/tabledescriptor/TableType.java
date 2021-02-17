@@ -16,7 +16,6 @@ public enum TableType {
     TOTAL_TIME("Racers Positions", Arrays.asList(
             ColumnType.NAME, ColumnType.TEAM, ColumnType.TIME_RESULT));
 
-
     private final String title;
     private final List<ColumnType> columnList;
 

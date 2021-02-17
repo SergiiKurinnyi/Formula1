@@ -5,7 +5,7 @@ import si.kurinnyi.formula1.racer.Racer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableDescriptorFactory implements TableDescriptor{
+public class TableDescriptorFactory implements TableDescriptor {
 
     ColumnFactory columnFactory = new ColumnFactory();
 
