@@ -44,23 +44,23 @@ public class ReportFormatter {
             counter.set(0);
             lineBuilder.append(tableType.getTitle());
         }
-        if (tableType == TableType.RACER_NAME_TABLE) {
+        if (tableType == TableType.RACER_NAME) {
 
             return lineBuilder.append(
                     formatNamesTableString(tableType, counter, racer, nameLineLength)).toString();
         }
 
-        if (tableType == TableType.LAP_COUNT_TABLE) {
+        if (tableType == TableType.LAP_COUNT) {
 			return lineBuilder.append(
 			        formatLapCountTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
 
-        if (tableType == TableType.BEST_LAP_TABLE) {
+        if (tableType == TableType.BEST_LAP) {
             return lineBuilder.append(
                     formatBestLapTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
 
-        if (tableType == TableType.AVG_LAP_TIME_TABLE) {
+        if (tableType == TableType.AVG_LAP_TIME) {
             return lineBuilder.append(
                     formatAvgTimeTableString(tableType, counter, racer, nameLineLength, teamLineLength)).toString();
         }
