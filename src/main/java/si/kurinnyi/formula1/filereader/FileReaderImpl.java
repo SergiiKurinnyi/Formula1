@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class FileReaderImpl implements FileReader {
 
     public List<String> readFile(Path path) throws IOException {
+
         Stream<String> streamFromFiles = Files.lines(path);
         return streamFromFiles.collect(Collectors.toList());
     }

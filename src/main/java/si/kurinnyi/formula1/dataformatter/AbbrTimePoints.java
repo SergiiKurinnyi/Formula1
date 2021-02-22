@@ -1,8 +1,9 @@
-package si.kurinnyi.formula1.racer;
+package si.kurinnyi.formula1.dataformatter;
 
 public class AbbrTimePoints {
-    private String abbr;
-    private String time;
+
+    private final String abbr;
+    private final String time;
 
     public AbbrTimePoints(String abbr, String time) {
         this.abbr = abbr;

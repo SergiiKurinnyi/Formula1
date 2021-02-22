@@ -2,7 +2,7 @@ package si.kurinnyi.formula1.dataparser;
 
 import static java.util.stream.Collectors.toMap;
 
-import java.time.temporal.ChronoUnit;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.time.LocalTime;
 import java.util.stream.IntStream;
 
-import si.kurinnyi.formula1.racer.AbbrTimePoints;
+import si.kurinnyi.formula1.dataformatter.AbbrTimePoints;
 
-public class DataToMapParser {
+public class DataToMapParser implements IDataToMapParser {
 
     private static final String DELIMITER = "_";
 
@@ -23,12 +23,13 @@ public class DataToMapParser {
     }
 
     public Map<String, String> parseAbbreviationToTeam(List<String> abbreviations) {
+
         return abbreviations.stream()
                 .map(line -> line.split(DELIMITER))
                 .collect(toMap(element -> element[0], element -> element[2]));
     }
 
-    public Map<String, List<AbbrTimePoints>> newAbbrToTimePoints(List<String> rawTime) {
+    public Map<String, List<AbbrTimePoints>> abbrToTimePoints(List<String> rawTime) {
 
         return rawTime.stream()
                 .map(line -> {
@@ -39,7 +40,7 @@ public class DataToMapParser {
                 .collect(Collectors.groupingBy(AbbrTimePoints::getAbbr));
     }
 
-    public Map<String, List<LocalTime>> newAbbrToLaps(
+    public Map<String, List<Duration>> abbrToLaps(
             Map<String, List<AbbrTimePoints>> abbrToStart, Map<String, List<AbbrTimePoints>> abbrToEnd) {
 
         return abbrToEnd.entrySet().stream()
@@ -55,7 +56,7 @@ public class DataToMapParser {
                                 LocalTime start = LocalTime.parse(startTime.get(index).getTime());
                                 LocalTime end = LocalTime.parse(endTime.get(index).getTime());
 
-                                return LocalTime.ofNanoOfDay(ChronoUnit.NANOS.between(start, end));
+                                return Duration.between(start, end);
                             })
                             .collect(Collectors.toList());
                 }));

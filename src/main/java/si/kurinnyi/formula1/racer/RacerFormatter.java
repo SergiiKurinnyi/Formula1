@@ -1,16 +1,14 @@
-package si.kurinnyi.formula1.dataformatter;
+package si.kurinnyi.formula1.racer;
 
-import java.time.LocalTime;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import si.kurinnyi.formula1.racer.Racer;
+public class RacerFormatter implements IRacerFormatter {
 
-public class RacerFormatter {
-
-    public List<Racer> newformatRacer(Map<String, String> abbrToName, Map<String, String> abbrToTeam,
-                                      Map<String, List<LocalTime>> abbrToLap) {
+    public List<Racer> formatRacer(Map<String, String> abbrToName, Map<String, String> abbrToTeam,
+                                   Map<String, List<Duration>> abbrToLap) {
         return abbrToName
                 .keySet()
                 .stream()

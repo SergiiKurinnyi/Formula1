@@ -1,9 +1,10 @@
-package si.kurinnyi.formula1.tabledescriptor;
+package si.kurinnyi.formula1.table;
+
+import si.kurinnyi.formula1.columns.ColumnType;
 
 import java.util.Arrays;
 import java.util.List;
 
-// defines table types like BestLapTable, NameTable, etc
 public enum TableType {
     RACER_NAME("Racers", Arrays.asList(
             ColumnType.NAME)),
@@ -11,10 +12,10 @@ public enum TableType {
             ColumnType.NAME, ColumnType.TEAM, ColumnType.BEST_LAP)),
     LAP_COUNT("Amount of Laps", Arrays.asList(
             ColumnType.NAME, ColumnType.TEAM, ColumnType.LAP_COUNT)),
-    AVG_LAP_TIME("Racers Average Lap Time", Arrays.asList(
+    AVG_LAP_TIME("Average Lap Time", Arrays.asList(
             ColumnType.NAME, ColumnType.TEAM, ColumnType.AVG_LAP_TIME)),
     TOTAL_TIME("Racers Positions", Arrays.asList(
-            ColumnType.NAME, ColumnType.TEAM, ColumnType.TIME_RESULT));
+            ColumnType.NAME, ColumnType.TEAM, ColumnType.TOTAL_TIME));
 
     private final String title;
     private final List<ColumnType> columnList;
@@ -36,4 +37,5 @@ public enum TableType {
     public String toString() {
         return title;
     }
+
 }

@@ -1,4 +1,4 @@
-package si.kurinnyi.formula1.tabledescriptor;
+package si.kurinnyi.formula1.columns;
 
 import si.kurinnyi.formula1.racer.Racer;
 
