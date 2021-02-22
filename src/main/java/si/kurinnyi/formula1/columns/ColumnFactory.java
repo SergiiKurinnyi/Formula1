@@ -97,7 +97,7 @@ public class ColumnFactory {
 
             @Override
             public Column get() {
-                return new AllLapsTimeColumn();
+                return new TotalTimeColumn();
             }
         });
     }

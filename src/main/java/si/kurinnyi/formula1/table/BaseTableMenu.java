@@ -4,7 +4,7 @@ import si.kurinnyi.formula1.columns.ColumnType;
 
 import java.io.IOException;
 
-public interface ITableMenu {
+public interface BaseTableMenu {
 
     TableType getTableType() throws IOException;
 

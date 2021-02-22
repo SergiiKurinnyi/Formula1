@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Racer {
 
-    private String name;
-    private String team;
-    private List<Duration> laps;
+    private final String name;
+    private final String team;
+    private final List<Duration> laps;
 
     public Racer(String name, String team, List<Duration> laps) {
         this.name = name;

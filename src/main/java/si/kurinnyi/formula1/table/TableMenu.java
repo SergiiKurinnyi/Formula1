@@ -10,7 +10,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class TableMenu implements ITableMenu {
+public class TableMenu implements BaseTableMenu {
 
     private final static List<TableType> TABLE_LIST = Arrays.asList(TableType.values());
 

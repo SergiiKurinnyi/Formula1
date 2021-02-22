@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class TableDescriptor implements ITableDescriptor {
+public class TableDescriptor {
 
     private final String tableName;
     private final List<ColumnType> columns;

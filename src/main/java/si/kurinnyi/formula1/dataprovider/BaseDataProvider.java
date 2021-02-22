@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-public interface IDataProvider {
+public interface BaseDataProvider {
 
     List<Racer> provideData() throws URISyntaxException, IOException;
 
