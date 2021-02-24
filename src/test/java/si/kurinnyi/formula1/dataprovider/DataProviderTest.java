@@ -4,13 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import si.kurinnyi.formula1.racer.Racer;
+
 import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataProviderTest {         //NOT FINISHED, SHOULD BE HEAVILY MOCKED ... WILL DO
+public class DataProviderTest {
 
     DataProvider dataProvider = new DataProvider();
 
