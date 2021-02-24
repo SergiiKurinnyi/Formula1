@@ -28,7 +28,6 @@ public class LapDataUtilTest {
         noLapsRacer = new Racer("Carlos Sainz", "MCLAREN RENAULT", emptyLaps);
     }
 
-
     @Test
     void avgTimeAccessorShouldReturnAvgLapDurationWhenArgumentIsRacer() {
         Duration expected = Duration.parse("PT1M26.39S");
@@ -85,9 +84,7 @@ public class LapDataUtilTest {
         Duration expected = ChronoUnit.FOREVER.getDuration();
         Duration actual = LapDataUtil.totalTimeAccessor.apply(noLapsRacer);
 
-
         assertEquals(expected, actual);
     }
-
 
 }

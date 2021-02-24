@@ -2,7 +2,6 @@ package si.kurinnyi.formula1.racer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import si.kurinnyi.formula1.dataprocessor.AbbrNameTeamRecord;
 
