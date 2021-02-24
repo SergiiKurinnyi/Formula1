@@ -2,6 +2,7 @@ package si.kurinnyi.formula1.racer;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 public class Racer {
 
@@ -25,6 +26,19 @@ public class Racer {
 
     public List<Duration> getLaps() {
         return laps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Racer racer = (Racer) o;
+        return getName().equals(racer.getName()) && getTeam().equals(racer.getTeam()) && getLaps().equals(racer.getLaps());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getTeam(), getLaps());
     }
 
 }
